@@ -1,0 +1,19 @@
+set serveroutput on;
+begin
+declare
+n number(5);
+s number(5);
+i number(5);
+begin
+n:=&n;
+i:=0;
+s:=0;
+while(i<=n)
+loop
+s:=s+i;
+i:=i+1;
+end loop;
+dbms_output.put_line ('sum is'||s);
+end;
+end;
+/
