@@ -13,4 +13,41 @@ create table employee(empid int primary key,ename varchar(10),company_id referen
     select *from staff where salary>20000;
 4.display student details percentage in bw 80 and 90
     select *from students where percentage between 80 and 90;
+    
+    
+  1. Display students who belong to 'MCA department. 
+    select students.name from students,department where department.deptid=students.deptid and department.name='mca';
+ 
+2.Update the salary of all staff by 10% whose designation is 'Associate Professor'.
+    update  staff set salary=(salary*10)/100 where designation='asso prof';
+
+3.Display all empioyees whose city is same as their company they work
+    select * from employee,company where company.compid=employee.company_id  and employee.city=company.city;
+
+4.Display the count of staffs department wise. 
+    select count(staffid)from staffs order by deptid;
+
+5.Delete the employees whose are working in the company whose no of employees is <5.
+  delete from employee where company_id in(select employee.comp_id=company.compid and company.no_of_emp<5);
+
+ 
+1.Display all staff and student details that belong to same department. 
+   
+     select students.name,staff.name from students,staff where students.deptid=staff.deptid;
+     select *from students,staff where students.deptid=staff.deptid;
+
+2.Display the staffs who earn maximum salary from each department.
+     select name,deptid,max(salary)from staff group by deptid;
+  
+3.Display staff whose salary> 25000 and city same as his/her student. 
+     select staff.name from staff,students where staff.city=students.city and staff.salary>25000;
+
+4.Display all employee details that belongs to that company having no of employees is maximum
+     select *from employee,company where company.compid=employee.company_id and company.no_of_emp=(select max(no_of_emp)from company);
+
+5. Update the employee salary by 8% who belongs to 'Ernakulam' whose designation is 'clerk' and city as same as where he works
+    update employee set salary=(salary*8)/100 where city='earnakulam' and designation='manager';
+    update employee set salary=(salary*8)/100 from company,employee where city='earnakulam' and designation='manager'and company.compid=employee.company_id and company.city=employee.city   ;
+    update salary=(salary*8)/100 and designation='manager'and city=(select employee.city from employee,company where company.compid=employee.company_id and company.city=employee.city);
+ 
 
