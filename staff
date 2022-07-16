@@ -1,0 +1,16 @@
+create table department(deptid int primary key,name varchar(10));
+create table students(stuid int primary key,name varchar(8),class varchar(4),city varchar(10),total_mark int,percentage int,deptid references department(deptid));
+create table staff(staffid int primary key,name varchar(10),deptid references department(deptid),designation varchar(10),salary int,city varchar(10));
+create table company(compid int primary key,cname varchar(10)not null,city varchar(10),no_of_emp int);
+create table employee(empid int primary key,ename varchar(10),company_id references company(compid),designation varchar(10),salary int,city varchar(10));
+
+
+1.display student deatils order by dept
+     select *from students order by deptid;
+2.display all employee
+    select ename from employee;
+3.display staff salary>20000
+    select *from staff where salary>20000;
+4.display student details percentage in bw 80 and 90
+    select *from students where percentage between 80 and 90;
+
