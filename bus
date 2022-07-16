@@ -1,0 +1,26 @@
+create table bus(busno int primary key,source varchar(20),destination varchar(20),couchtype varchar(20));
+create table ticket(ticno int primary key,journey_date date,age int,sex varchar(20),source varchar(20),destination varchar(20),dep_time varchar(20),busno int references bus(busno));
+create table passenger(pnr_no int primary key,ticket_no int references ticket(ticno),name varchar(20),age int,sex varchar(20),contact_no number(10));
+create table reservation(pnrno int references passenger(pnr_no),journey_date date,no_of_seats int,address varchar(20),contact_no number(10),busno int references bus(busno),seat_no int);
+create table cancellation(pnr_no int references passenger(pnr_no),journey_date date,seat_no int,contact_no number(10));
+
+
+
+1.display ticketno and names of passenger
+     select ticket_no,name from passenger;
+2.display all male passengers
+     select name from passenger where sex='male';
+3.find name age between 20 and 40
+     select name from passenger where age between 20 and 40;
+4.add constarint
+     alter table cancellation add constraint cn check(length(seat_no)=2);
+5.delete column
+     delete from cancellation where contact_no='1234567890';
+6.passengers who cancelled ticket on '10-oct-19'
+     select * from cancellation,passenger where passenger.pnr_no=cancellation.pnr_no and journey_date='10-oct-19';
+7.total no of males travelled on bus no 200 
+    select count('female')from ticket where busno='200';
+8.display sorted list of passenger names
+    select name from passenger order by name;
+9.namesand ticketno starts with s ends with h
+    select ticket_no,name from passenger where name like 's%h';
