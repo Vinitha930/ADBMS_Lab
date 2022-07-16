@@ -1,0 +1,5 @@
+1.view for update salary where designation='manager' 
+      create view emp as select designation,salary+salary*0.105 as salary from employee where designation='manager';
+
+2.view for staff names
+      create view sta as select name from staff  where staffid=200;
